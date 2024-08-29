@@ -2,14 +2,24 @@
 
 Repositório que contém todos os projetos desenvolvidos nos Cursos da Alura.
 
-[:whale: Curso de Docker](https://github.com/PedroPadilhaPortella/Alura-DevOps/tree/main/Docker#readme)
+[:coffee: Alura Java](https://github.com/PedroPadilhaPortellaAlura-Cursos)
 
-[:snowflake: Curso de Kubernetes](https://github.com/PedroPadilhaPortella/Alura-DevOps/tree/main/Kubernetes#readme)
+[**C#** Alura Dotnet](https://github.com/PedroPadilhaPortella/Alura-Cursos) 
 
-[:globe_with_meridians: Curso de Kubernetes com AKS e ACR](https://github.com/PedroPadilhaPortella/Alura-DevOps/tree/main/Kubernetes%20com%20AKS%20e%20ACR#readme)
+[:four_leaf_clover: Alura NodeJS](https://github.com/PedroPadilhaPortella/Alura-Cursos) 
 
-[:hammer_and_wrench: Curso de Terraform](https://github.com/PedroPadilhaPortella/Alura-DevOps/tree/main/Terraform#readme)
+[:ledger: Alura Javascript](https://github.com/PedroPadilhaPortella/Alura-Cursos) 
 
-[:hammer_and_wrench: Curso de Terraform e Kubernetes](https://github.com/PedroPadilhaPortella/Alura-DevOps/tree/main/Terraform%20e%20Kubernetes#readme)
+[:closed_book: Alura Frontend](https://github.com/PedroPadilhaPortella/Alura-Cursos) 
 
-[:hammer_and_wrench: Curso de AWS](https://github.com/PedroPadilhaPortella/Alura-DevOps/tree/main/AWS)
+[:small_red_triangle: Alura Angular](https://github.com/PedroPadilhaPortella/Alura-Cursos) 
+
+[:atom: Alura React](https://github.com/PedroPadilhaPortella/Alura-Cursos)
+
+[:iphone: Alura Flutter](https://github.com/PedroPadilhaPortella/Alura-Cursos) 
+
+[:mobile_phone_off: Alura Android](https://github.com/PedroPadilhaPortella/Alura-Cursos) 
+
+[:milky_way: Alura DevOps](https://github.com/PedroPadilhaPortella/Alura-Cursos) 
+
+[:bar_chart: Alura Inovação e Gestão](https://github.com/PedroPadilhaPortella/Alura-Cursos) 
