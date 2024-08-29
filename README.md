@@ -22,4 +22,4 @@ Repositório que contém todos os projetos desenvolvidos nos Cursos da Alura.
 
 [:milky_way: Alura DevOps](https://github.com/PedroPadilhaPortella/Alura-Cursos) 
 
-[:bar_chart: Alura Inovação e Gestão](https://github.com/PedroPadilhaPortella/Alura-Cursos) 
+[:bar_chart: Alura Inovação e Gestão](https://github.com/PedroPadilhaPortella/Alura-Cursos/tree/main/Alura-Inovacao-e-Gestao#readme) 
