@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Agenda</string>
+    <string name="placeholder_nome">Nome</string>
+    <string name="placeholder_telefone">Telefone</string>
+    <string name="placeholder_e_mail">E-mail</string>
+    <string name="button_salvar">Salvar</string>
+    <string name="todo">TODO</string>
+</resources>
