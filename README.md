@@ -18,7 +18,7 @@ Repositório que contém todos os projetos desenvolvidos nos Cursos da Alura.
 
 [:iphone: Alura Flutter](https://github.com/PedroPadilhaPortella/Alura-Cursos) 
 
-[:mobile_phone_off: Alura Android](https://github.com/PedroPadilhaPortella/Alura-Cursos) 
+[:mobile_phone_off: Alura Android](https://github.com/PedroPadilhaPortella/Alura-Cursos/tree/main/Alura-Android#readme) 
 
 [:milky_way: Alura DevOps](https://github.com/PedroPadilhaPortella/Alura-Cursos) 
 
