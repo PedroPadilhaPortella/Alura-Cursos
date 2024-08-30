@@ -1,0 +1,13 @@
+{
+  "name": "bytebank",
+  "version": "1.0.0",
+  "description": "pratica de poo com javascript",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "contas": "node contas.js",
+    "funcionarios": "node funcionarios.js"
+  },
+  "author": "pedro portella",
+  "license": "ISC"
+}
