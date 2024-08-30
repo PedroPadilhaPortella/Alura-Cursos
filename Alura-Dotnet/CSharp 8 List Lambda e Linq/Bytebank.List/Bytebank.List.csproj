@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="ByteBank.Modelos">
+      <HintPath>..\..\CSharp 5 Bibliotecas DLL Documentação e  NuGet\ByteBank.SistemaAgencia\bin\Debug\net5.0\ByteBank.Modelos.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
