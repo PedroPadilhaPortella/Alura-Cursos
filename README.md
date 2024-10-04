@@ -20,6 +20,6 @@ Repositório que contém todos os projetos desenvolvidos nos Cursos da Alura.
 
 [:mobile_phone_off: Alura Android](https://github.com/PedroPadilhaPortella/Alura-Cursos/tree/main/Alura-Android#readme) 
 
-[:milky_way: Alura DevOps](https://github.com/PedroPadilhaPortella/Alura-Cursos) 
+[:milky_way: Alura DevOps](https://github.com/PedroPadilhaPortella/Alura-Cursos/blob/main/Alura-DevOps#readme) 
 
 [:bar_chart: Alura Inovação e Gestão](https://github.com/PedroPadilhaPortella/Alura-Cursos/tree/main/Alura-Inovacao-e-Gestao#readme) 
