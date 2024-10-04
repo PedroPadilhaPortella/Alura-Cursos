@@ -1,0 +1,18 @@
+regions:
+- us-east-1
+- us-east-2
+
+account-blocklist:
+- "999999999999"
+
+accounts:
+  "259153377896":
+    filters:
+      IAMUser:
+      - "acesso-aws-cli"
+      IAMUserPolicyAttachment:
+      - "acesso-aws-cli -> AdministratorAccess"
+      IAMUserAccessKey:
+      - "acesso-aws-cli -> AKIATYVV6XJUJA74A6TQ"
+      
+# ./aws-nuke-v2.25.0-windows-amd64 -c config.yaml --access-key-id AKIATYVV6XJUJA74A6TQ --secret-access-key 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 --no-dry-run
