@@ -2,7 +2,7 @@
 
 Repositório que contém todos os projetos desenvolvidos nos Cursos da Alura.
 
-[:coffee: Alura Java](https://github.com/PedroPadilhaPortellaAlura-Cursos)
+[:coffee: Alura Java](https://github.com/PedroPadilhaPortella/Alura-Cursos/tree/main/Alura-Java)
 
 [**C#** Alura Dotnet](https://github.com/PedroPadilhaPortella/Alura-Cursos) 
 
@@ -14,7 +14,7 @@ Repositório que contém todos os projetos desenvolvidos nos Cursos da Alura.
 
 [:small_red_triangle: Alura Angular](https://github.com/PedroPadilhaPortella/Alura-Cursos/tree/main/Alura-Angular) 
 
-[:atom: Alura React](https://github.com/PedroPadilhaPortella/Alura-Cursos)
+[:atom: Alura React](https://github.com/PedroPadilhaPortella/Alura-Cursos/tree/main/Alura-React)
 
 [:iphone: Alura Flutter](https://github.com/PedroPadilhaPortella/Alura-Cursos) 
 
