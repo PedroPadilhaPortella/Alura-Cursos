@@ -10,9 +10,9 @@ Repositório que contém todos os projetos desenvolvidos nos Cursos da Alura.
 
 [:ledger: Alura Javascript](https://github.com/PedroPadilhaPortella/Alura-Cursos) 
 
-[:closed_book: Alura Frontend](https://github.com/PedroPadilhaPortella/Alura-Cursos) 
+[:closed_book: Alura Frontend](https://github.com/PedroPadilhaPortella/Alura-Cursos/tree/main/Alura-Frontend) 
 
-[:small_red_triangle: Alura Angular](https://github.com/PedroPadilhaPortella/Alura-Cursos) 
+[:small_red_triangle: Alura Angular](https://github.com/PedroPadilhaPortella/Alura-Cursos/tree/main/Alura-Angular) 
 
 [:atom: Alura React](https://github.com/PedroPadilhaPortella/Alura-Cursos)
 
