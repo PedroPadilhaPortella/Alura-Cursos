@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -25,23 +25,43 @@ import Box from '@mui/material/Box';
 
 import HomeHubLogo from './assets/home-hub.png';
 
+type AuthData = {
+  firstName?: string;
+  email: string;
+  authId: string
+}
+
 export default function Root() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(anchorEl);
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [authInfo, setAuthInfo] = useState<AuthData | undefined>();
+
+  useEffect(() => {
+    const auth: AuthData = JSON.parse(localStorage.getItem('auth'));
+    if (!auth) location.replace('/');
+    setAuthInfo(auth);
+  }, []);
+
 
   const toggleDrawer = (showDrawer: boolean) => () => {
     setIsDrawerOpen(showDrawer);
+  };
+
+  const openMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
   };
 
   const closeMenu = () => {
     setAnchorEl(null);
   };
 
-  const openMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const logout = () => {
+    setAuthInfo(undefined);
+    localStorage.removeItem('auth');
+    location.replace('/');
+  }
 
   const renderDrawer = (
     <Box sx={{ width: 250 }} role='presentation' onClick={toggleDrawer(false)}>
@@ -91,7 +111,7 @@ export default function Root() {
       keepMounted
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
     >
-      <MenuItem onClick={closeMenu}>Usuário</MenuItem>
+      <MenuItem onClick={closeMenu}>{authInfo?.firstName || authInfo?.email || 'Usuário'}</MenuItem>
       <Divider />
       <ListItem disablePadding onClick={closeMenu}>
         <ListItemButton>
@@ -110,7 +130,7 @@ export default function Root() {
         </ListItemButton>
       </ListItem>
       <Divider />
-      <ListItem disablePadding onClick={closeMenu}>
+      <ListItem disablePadding onClick={logout}>
         <ListItemButton>
           <ListItemIcon>
             <LogoutIcon />
@@ -122,38 +142,40 @@ export default function Root() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: '#9C27B0' }}>
-        <Toolbar>
-          <MenuItem onClick={toggleDrawer(true)}>
-            <img src={HomeHubLogo} style={{ width: '176px' }} />
-          </MenuItem>
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <MenuItem onClick={openMenu}>
+    <div id="single-spa-application:react-navbar">
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static" sx={{ backgroundColor: '#9C27B0' }}>
+          <Toolbar>
+            <MenuItem onClick={toggleDrawer(true)}>
+              <img src={HomeHubLogo} style={{ width: '176px' }} />
+            </MenuItem>
+            <Box sx={{ flexGrow: 1 }} />
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <MenuItem onClick={openMenu}>
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-haspopup="true"
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </MenuItem>
               <IconButton
                 size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-haspopup="true"
                 color="inherit"
               >
-                <AccountCircle />
+                <NotificationsIcon />
               </IconButton>
-            </MenuItem>
-            <IconButton
-              size="large"
-              color="inherit"
-            >
-              <NotificationsIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
-        <Drawer open={isDrawerOpen} onClose={toggleDrawer(false)}>
-          {renderDrawer}
-        </Drawer>
-        {renderMenu}
-      </AppBar>
-    </Box>
+            </Box>
+          </Toolbar>
+          <Drawer open={isDrawerOpen} onClose={toggleDrawer(false)}>
+            {renderDrawer}
+          </Drawer>
+          {renderMenu}
+        </AppBar>
+      </Box>
+    </div>
   );
 }

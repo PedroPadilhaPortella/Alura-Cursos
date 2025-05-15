@@ -1,5 +1,5 @@
 {
-  "name": "@home-hub/react-dashboard",
+  "name": "@home-hub/react-login",
   "scripts": {
     "start": "webpack serve",
     "start:standalone": "webpack serve --env standalone",
@@ -11,19 +11,18 @@
     "check-format": "prettier --check .",
     "build:types": "tsc"
   },
-  "types": "dist/home-hub-react-dashboard.d.ts",
+  "types": "dist/home-hub-react-login.d.ts",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@fontsource/roboto": "^5.2.5",
-    "@mui/icons-material": "^7.1.0",
     "@mui/material": "^7.1.0",
-    "@mui/x-charts": "^8.3.0",
     "@types/react-dom": "^18.3.7",
     "@types/systemjs": "^6.1.1",
     "@types/webpack-env": "^1.16.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-hook-form": "^7.56.3",
     "single-spa": "^5.9.3",
     "single-spa-react": "^4.3.1"
   },
