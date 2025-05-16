@@ -1,14 +1,11 @@
 import { Box, Button, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
-type FormValues = {
-  email: string;
-  password: string;
-}
+import { setAuthentication, AuthForm } from '../../../../utils/src/home-hub-utils';
 
 const LoginForm = () => {
 
-  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
+  const { register, handleSubmit, formState: { errors } } = useForm<AuthForm>();
 
   const emailValidations = {
     required: 'Campo de e-mail obrigatório',
@@ -19,15 +16,11 @@ const LoginForm = () => {
     required: 'Campo de senha obrigatório'
   }
 
-  const onSubmit = ({ email }: FormValues) => {
-    const authId = email.replace('@', '').replace('.', '').codePointAt(1);
-    localStorage.setItem('auth', JSON.stringify({ email, authId }));
-    location.replace(`/dashboard/${authId}`);
-  };
+  const onSubmit = (data: AuthForm) => setAuthentication(data);
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-      <TextField id='email' label='Email' variant='standard'
+      <TextField id='email' label='E-mail' variant='standard'
         error={!!errors.email} helperText={errors.email?.message}
         {...register('email', emailValidations)}
         sx={{ marginTop: '16px', marginX: '32px' }}

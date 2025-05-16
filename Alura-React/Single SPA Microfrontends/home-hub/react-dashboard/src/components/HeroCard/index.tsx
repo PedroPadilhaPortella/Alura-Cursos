@@ -1,11 +1,12 @@
-import { Box, Typography } from '@mui/material';
-
-import CardContent from '@mui/material/CardContent';
-import Card from '@mui/material/Card';
+import { Box, Typography, CardContent, Card } from '@mui/material';
 
 import VisaoGeral from '../../assets/visao-geral.png';
 
+import { getAuthInfo } from '../../../../utils/src/home-hub-utils';
+
 const HeroCard = () => {
+  const { authInfo } = getAuthInfo();
+
   return (
     <Card sx={{ background: '#FFF3E0' }}>
       <CardContent>
@@ -16,7 +17,9 @@ const HeroCard = () => {
           justifyContent={'space-evenly'}
         >
           <Box>
-            <Typography variant='h5'>Olá, usuário!</Typography>
+            <Typography variant='h5'>
+              Olá, {!!authInfo.firstName ? `${authInfo.firstName} ${authInfo.lastName}` : authInfo?.email}!
+            </Typography>
             <Typography>Confira as informações da sua casa inteligente!</Typography>
           </Box>
           <img src={VisaoGeral} alt='Visão Geral' height={140} />

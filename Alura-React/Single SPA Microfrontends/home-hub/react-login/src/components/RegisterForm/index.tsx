@@ -1,24 +1,15 @@
 import { Box, Button, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
-type FormValues = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-}
+import { setAuthentication, AuthForm } from '../../../../utils/src/home-hub-utils';
 
 const RegisterForm = () => {
 
-  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
+  const { register, handleSubmit, formState: { errors } } = useForm<AuthForm>();
 
-  const firstNameValidations = {
-    required: 'Campo de nome obrigatório'
-  }
+  const firstNameValidations = { required: 'Campo de nome obrigatório' }
 
-  const lastNameValidations = {
-    required: 'Campo de sobrenome obrigatório'
-  }
+  const lastNameValidations = { required: 'Campo de sobrenome obrigatório' }
 
   const emailValidations = {
     required: 'Campo de e-mail obrigatório',
@@ -29,11 +20,7 @@ const RegisterForm = () => {
     required: 'Campo de senha obrigatório'
   }
 
-  const onSubmit = ({ email, firstName }: FormValues) => {
-    const authId = email.replace('@', '').replace('.', '').codePointAt(1);
-    localStorage.setItem('auth', JSON.stringify({ email, firstName, authId }));
-    location.replace(`/dashboard/${authId}`);
-  };
+  const onSubmit = (data: AuthForm) => setAuthentication(data);
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
@@ -47,7 +34,7 @@ const RegisterForm = () => {
         {...register('lastName', lastNameValidations)}
         sx={{ marginTop: '16px', marginX: '32px' }}
       />
-      <TextField id='email' label='Email' variant='standard'
+      <TextField id='email' label='E-mail' variant='standard'
         error={!!errors.email} helperText={errors.email?.message}
         {...register('email', emailValidations)}
         sx={{ marginTop: '16px', marginX: '32px' }}

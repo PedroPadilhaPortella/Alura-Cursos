@@ -25,23 +25,19 @@ import Box from '@mui/material/Box';
 
 import HomeHubLogo from './assets/home-hub.png';
 
-type AuthData = {
-  firstName?: string;
-  email: string;
-  authId: string
-}
+import { getAuthInfo, AuthInfo, logout } from '../../utils/src/home-hub-utils';
 
 export default function Root() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(anchorEl);
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [authInfo, setAuthInfo] = useState<AuthData | undefined>();
+  const [authInfo, setAuthInfo] = useState<AuthInfo | undefined>();
 
   useEffect(() => {
-    const auth: AuthData = JSON.parse(localStorage.getItem('auth'));
-    if (!auth) location.replace('/');
-    setAuthInfo(auth);
+    const { authInfo: authData, isAuthenticated } = getAuthInfo();
+    if (!isAuthenticated) location.replace('/');
+    setAuthInfo(authData);
   }, []);
 
 
@@ -57,16 +53,23 @@ export default function Root() {
     setAnchorEl(null);
   };
 
-  const logout = () => {
+  const editProfile = () => {
+    location.replace(`/dashboard/${authInfo.authId}/edit-profile`);
+  }
+
+  const navigateToDashboard = () => {
+    location.replace(`/dashboard/${authInfo.authId}/`);
+  }
+
+  const exit = () => {
     setAuthInfo(undefined);
-    localStorage.removeItem('auth');
-    location.replace('/');
+    logout();
   }
 
   const renderDrawer = (
     <Box sx={{ width: 250 }} role='presentation' onClick={toggleDrawer(false)}>
       <List>
-        <ListItem disablePadding>
+        <ListItem disablePadding onClick={navigateToDashboard}>
           <ListItemButton>
             <ListItemIcon>
               <SpaceDashboardIcon />
@@ -111,7 +114,9 @@ export default function Root() {
       keepMounted
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
     >
-      <MenuItem onClick={closeMenu}>{authInfo?.firstName || authInfo?.email || 'Usuário'}</MenuItem>
+      <MenuItem onClick={closeMenu}>
+        {!!authInfo?.firstName ? `${authInfo.firstName} ${authInfo.lastName}` : authInfo?.email}
+      </MenuItem>
       <Divider />
       <ListItem disablePadding onClick={closeMenu}>
         <ListItemButton>
@@ -121,7 +126,7 @@ export default function Root() {
           <ListItemText primary={'Configurações'} />
         </ListItemButton>
       </ListItem>
-      <ListItem disablePadding onClick={closeMenu}>
+      <ListItem disablePadding onClick={editProfile}>
         <ListItemButton>
           <ListItemIcon>
             <PersonIcon />
@@ -130,7 +135,7 @@ export default function Root() {
         </ListItemButton>
       </ListItem>
       <Divider />
-      <ListItem disablePadding onClick={logout}>
+      <ListItem disablePadding onClick={exit}>
         <ListItemButton>
           <ListItemIcon>
             <LogoutIcon />
