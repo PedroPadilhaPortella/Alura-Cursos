@@ -10,6 +10,7 @@ module.exports = (webpackConfigEnv, argv) => {
   });
 
   return merge(defaultConfig, {
+    externals: ['@home-hub/react-utils'],
     output: {
       filename: "home-hub-react-login.js",
       libraryTarget: "system",

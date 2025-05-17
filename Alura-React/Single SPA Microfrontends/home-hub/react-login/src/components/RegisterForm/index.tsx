@@ -1,7 +1,8 @@
 import { Box, Button, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
-import { setAuthentication, AuthForm } from '../../../../utils/src/home-hub-utils';
+import { AuthForm } from '../../../../utils/src/home-hub-utils';
+import { setAuthentication } from '@home-hub/react-utils';
 
 const RegisterForm = () => {
 

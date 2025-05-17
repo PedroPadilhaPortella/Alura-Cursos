@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
-
 import { Box, Button, Container, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
-import { AuthInfo, getAuthInfo, updateAuthInfo } from '../../../../utils/src/home-hub-utils';
+import { AuthInfo } from '../../../../utils/src/home-hub-utils';
+import { getAuthInfo, updateAuthInfo } from '@home-hub/react-utils';
 
 type EditProfileForm = Omit<AuthInfo, 'authId'>;
 

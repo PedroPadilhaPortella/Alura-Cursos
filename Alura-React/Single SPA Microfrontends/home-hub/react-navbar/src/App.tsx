@@ -25,14 +25,14 @@ import Box from '@mui/material/Box';
 
 import HomeHubLogo from './assets/home-hub.png';
 
-import { getAuthInfo, AuthInfo, logout } from '../../utils/src/home-hub-utils';
+import { getAuthInfo, AuthInfo, logout } from '@home-hub/react-utils';
 
 export default function Root() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(anchorEl);
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [authInfo, setAuthInfo] = useState<AuthInfo | undefined>();
+  const [authInfo, setAuthInfo] = useState<typeof AuthInfo | undefined>();
 
   useEffect(() => {
     const { authInfo: authData, isAuthenticated } = getAuthInfo();
@@ -61,6 +61,10 @@ export default function Root() {
     location.replace(`/dashboard/${authInfo.authId}/`);
   }
 
+  const navigateToDevices = () => {
+    location.replace(`/dashboard/${authInfo.authId}/devices`);
+  }
+
   const exit = () => {
     setAuthInfo(undefined);
     logout();
@@ -77,7 +81,7 @@ export default function Root() {
             <ListItemText primary={'Visão geral'} />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding>
+        <ListItem disablePadding onClick={navigateToDevices}>
           <ListItemButton>
             <ListItemIcon>
               <WifiIcon />
