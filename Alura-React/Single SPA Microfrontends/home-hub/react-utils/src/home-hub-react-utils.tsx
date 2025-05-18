@@ -26,12 +26,10 @@ export function updateAuthInfo(data: AuthInfo) {
   const auth = cookies.get('auth');
 
   if (!auth || !location.pathname.includes(auth.authId.toString())) {
-    alert('Você não tem permissão para alterar os dados desta conta.');
     logout();
   }
 
   cookies.set('auth', data);
-  alert('Dados atualizados com sucesso');
   location.replace(`/dashboard/${data.authId}/`);
 }
 

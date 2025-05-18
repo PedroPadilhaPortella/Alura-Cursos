@@ -1,7 +1,8 @@
 import { Box, Grid } from '@mui/material';
 
+import ControlCard from '../components/ControlCard';
 import HeroCard from '../components/HeroCard';
-import AcCard from '../components/AcCard';
+import DoorCard from '../components/DoorCard';
 
 const DevicesScreen = () => {
   return (
@@ -18,14 +19,14 @@ const DevicesScreen = () => {
         <Grid size={12}>
           <HeroCard title='Dispositos' subtitle='Controle seus dispositivos de perto ou de longe!' />
         </Grid>
-        <Grid size={4}>
-          <AcCard label='Ar-Condicionado' min={16} max={27} default={20} />
+        <Grid size={3}>
+          <ControlCard label='Ar-Condicionado' min={16} max={27} default={20} />
         </Grid>
-        <Grid size={4}>
-          <AcCard label='Freezer' min={-10} max={5} default={-2} />
+        <Grid size={3}>
+          <ControlCard label='Freezer' min={-10} max={5} default={-2} />
         </Grid>
-        <Grid size={4}>
-          <AcCard label='Geladeira' min={-2} max={10} default={8} />
+        <Grid size={6}>
+          <DoorCard />
         </Grid>
       </Grid>
     </Box>

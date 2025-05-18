@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import Parcel from "single-spa-react/parcel";
+
 import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircle from '@mui/icons-material/AccountCircle';
@@ -32,6 +34,7 @@ export default function Root() {
   const isMenuOpen = Boolean(anchorEl);
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [logoutDialogVisible, setLogoutDialogVisible] = useState(false);
   const [authInfo, setAuthInfo] = useState<typeof AuthInfo | undefined>();
 
   useEffect(() => {
@@ -45,27 +48,17 @@ export default function Root() {
     setIsDrawerOpen(showDrawer);
   };
 
-  const openMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const openMenu = (event: React.MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget);
 
-  const closeMenu = () => {
-    setAnchorEl(null);
-  };
+  const closeMenu = () => setAnchorEl(null);
 
-  const editProfile = () => {
-    location.replace(`/dashboard/${authInfo.authId}/edit-profile`);
-  }
+  const navigateToEditProfile = () => location.replace(`/dashboard/${authInfo.authId}/edit-profile`);
 
-  const navigateToDashboard = () => {
-    location.replace(`/dashboard/${authInfo.authId}/`);
-  }
+  const navigateToDashboard = () => location.replace(`/dashboard/${authInfo.authId}/`);
 
-  const navigateToDevices = () => {
-    location.replace(`/dashboard/${authInfo.authId}/devices`);
-  }
+  const navigateToDevices = () => location.replace(`/dashboard/${authInfo.authId}/devices`);
 
-  const exit = () => {
+  const onLogout = () => {
     setAuthInfo(undefined);
     logout();
   }
@@ -130,7 +123,7 @@ export default function Root() {
           <ListItemText primary={'Configurações'} />
         </ListItemButton>
       </ListItem>
-      <ListItem disablePadding onClick={editProfile}>
+      <ListItem disablePadding onClick={navigateToEditProfile}>
         <ListItemButton>
           <ListItemIcon>
             <PersonIcon />
@@ -139,7 +132,7 @@ export default function Root() {
         </ListItemButton>
       </ListItem>
       <Divider />
-      <ListItem disablePadding onClick={exit}>
+      <ListItem disablePadding onClick={() => setLogoutDialogVisible(true)}>
         <ListItemButton>
           <ListItemIcon>
             <LogoutIcon />
@@ -185,6 +178,18 @@ export default function Root() {
           {renderMenu}
         </AppBar>
       </Box>
+      {logoutDialogVisible && (
+        <Parcel config={() => System.import('@home-hub/react-parcel') as any}
+          title='Home Hub'
+          description='Deseja sair do Home Hub?'
+          leftButtonMessage='Cancelar'
+          rightButtonMessage='Sair'
+          onClose={() => setLogoutDialogVisible(false)}
+          onLeftButtonClick={() => setLogoutDialogVisible(false)}
+          onRightButtonClick={() => onLogout()}
+          isVisible={logoutDialogVisible}
+        />
+      )}
     </div>
   );
 }

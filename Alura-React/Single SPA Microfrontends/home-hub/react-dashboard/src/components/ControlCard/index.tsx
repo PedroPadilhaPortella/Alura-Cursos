@@ -1,9 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Card, CardContent, Stack, Switch, Typography } from '@mui/material';
-
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
+import { Box, Card, CardContent, Slider, Snackbar, Stack, Switch, Typography } from '@mui/material';
 
 function valueText(value: number) {
   return `${value}°C`;
@@ -16,12 +13,20 @@ interface AcCardProps {
   default: number;
 }
 
-const AcCard: React.FC<AcCardProps> = (props) => {
+const ControlCard: React.FC<AcCardProps> = (props) => {
 
   const marks = [
     { value: props.min, label: `${props.min}°C` },
     { value: props.max, label: `${props.max}°C` },
   ];
+
+  const [control, setControl] = useState(true);
+  const [snackbarVisibility, setSnackbarVisibility] = useState(false);
+
+  const switchControl = () => {
+    setSnackbarVisibility(true);
+    setControl(!control);
+  }
 
   return (
     <Card sx={{ background: '#F5F5F5' }}>
@@ -32,7 +37,8 @@ const AcCard: React.FC<AcCardProps> = (props) => {
         <Box>
           <Stack direction='row' spacing={1} alignItems='center'>
             <Typography>Off</Typography>
-            <Switch defaultChecked inputProps={{ 'aria-label': 'ant design' }} />
+            <Switch defaultChecked inputProps={{ 'aria-label': 'ant design' }}
+              onClick={() => switchControl()} />
             <Typography>On</Typography>
           </Stack>
           <Slider
@@ -45,8 +51,15 @@ const AcCard: React.FC<AcCardProps> = (props) => {
           />
         </Box>
       </CardContent>
+      {snackbarVisibility && (
+        <Snackbar
+          open={snackbarVisibility}
+          autoHideDuration={2000}
+          message={`${props.label} ${control ? 'ligado(a)' : 'desligado(a)'}.`}
+        />
+      )}
     </Card>
   );
 };
 
-export default AcCard;
+export default ControlCard;

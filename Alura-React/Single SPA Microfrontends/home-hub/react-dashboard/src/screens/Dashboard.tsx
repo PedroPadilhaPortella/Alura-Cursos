@@ -1,9 +1,10 @@
 import { Box, Grid } from '@mui/material';
 
+import ReminderCard from '../components/ReminderCard';
 import EnergyCard from '../components/EnergyCard';
-import HeroCard from '../components/HeroCard';
 import UsersCard from '../components/UsersCard';
 import WaterCard from '../components/WaterCard';
+import HeroCard from '../components/HeroCard';
 
 import { getAuthInfo } from '@home-hub/react-utils';
 
@@ -33,6 +34,9 @@ export default function DashboardScreen() {
         </Grid>
         <Grid size={5}>
           <WaterCard />
+        </Grid>
+        <Grid size={4}>
+          <ReminderCard />
         </Grid>
         <Grid size={4}>
           <EnergyCard currentMonthUsage={90} lastMonthUsage={100} />
