@@ -1,0 +1,30 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "tasks": {
+    "start": {
+      "persistent": true,
+      "cache": false
+    },
+    "prepare": {
+      "dependsOn": [
+        "^prepare"
+      ]
+    },
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "dist/"
+      ]
+    },
+    "build:webpack": {
+      "dependsOn": [
+        "^build:webpack"
+      ],
+      "outputs": [
+        "dist/"
+      ]
+    }
+  }
+}
