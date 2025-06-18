@@ -1,0 +1,38 @@
+import { Meta, Controls, Primary, Canvas } from "@storybook/blocks"
+
+import * as Story from "./Button.stories.ts"
+
+<Meta of={Story} />
+
+# Botão
+
+Este é um componente de botão, usado para disparar ações.
+
+### Primário
+<Primary />
+
+### Desabilitado
+<Canvas of={Story.Disabled} />
+
+### Secundário
+<Canvas of={Story.Secondary} />
+
+### Secundário Desabilitado
+<Canvas of={Story.SecondaryDisabled} />
+
+### Terciário
+<Canvas of={Story.Tertiary} />
+
+### Terciário Desabilitado
+<Canvas of={Story.TertiaryDisabled} />
+
+### Primário com tema Violeta
+<Canvas of={Story.Violet} />
+
+### Secundário com tema Violeta
+<Canvas of={Story.VioletSecondary} />
+
+### Terciário com tema Violeta
+<Canvas of={Story.VioletTertiary} />
+
+<Controls />
