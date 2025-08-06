@@ -1,0 +1,52 @@
+@use 'config/variables' as *;
+
+.avatar {
+  &-container {
+    align-items: center;
+    background-color: $laranja;
+    border-radius: 50%;
+    display: flex;
+    height: 48px;
+    justify-content: center;
+    position: relative;
+    width: 48px;
+
+    * {
+      color: $cinza-claro-texto;
+    }
+
+    &::before {
+      position: absolute;
+      content: '';
+      bottom: 0;
+      right: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    &--online {
+      &::before {
+        background-color: green;
+      }
+    }
+
+    &--offline {
+      &::before {
+        background-color: gray;
+      }
+    }
+  }
+
+  &-image {
+    border-radius: 50%;
+    height: 48px;
+    overflow: hidden;
+    width: 48px;
+
+    img {
+      width: 100%;
+    }
+  }
+}
