@@ -13,7 +13,9 @@ export const TaskItem = ({
       <Pressable onPress={onToggleCompleted}>
         <IconCheck checked={completed} />
       </Pressable>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.title} numberOfLines={2} ellipsizeMode="tail">
+        {title}
+      </Text>
       <Pressable onPress={onUpdate}>
         <IconPencil />
       </Pressable>
@@ -29,9 +31,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    gap: 8,
+    gap: 16,
     backgroundColor: "#98A0A8",
-    paddingHorizontal: 8,
+    paddingHorizontal: 12,
     paddingVertical: 18,
     borderRadius: 8,
   },

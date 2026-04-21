@@ -29,6 +29,13 @@ export default function Tasks() {
               onToggleCompleted={() => toggleTaskStatus(item.id)}
             />
           )}
+          ListEmptyComponent={() => (
+            <View>
+              <Text style={styles.noItems}>
+                Ainda não há tarefas na sua lista, que tal adicionar?
+              </Text>
+            </View>
+          )}
         />
         <FocusButton
           title="Adicionar nova Tarefa"
@@ -59,5 +66,11 @@ const styles = StyleSheet.create({
   },
   taskList: {
     flex: 1,
+  },
+  noItems: {
+    textAlign: "center",
+    color: "#98A0A8",
+    fontSize: 18,
+    marginTop: 40,
   },
 });

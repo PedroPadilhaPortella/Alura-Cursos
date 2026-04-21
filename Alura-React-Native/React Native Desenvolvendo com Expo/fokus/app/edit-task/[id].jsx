@@ -1,19 +1,10 @@
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import {
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import { Footer } from "../../components/Footer";
-import { IconSave } from "../../components/Icons";
+import { FormTask } from "../../components/FormTask";
 import { useTaskContext } from "../../components/context/useTaskContext";
 
 export default function EditTask() {
@@ -35,73 +26,48 @@ export default function EditTask() {
     router.navigate("/tasks");
   };
 
-  return (
-    <KeyboardAvoidingView
-      style={styles.keyboardAvoidingView}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-    >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+  if (!task) {
+    return (
+      <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
-          <Text style={styles.title}>Editar Tarefa</Text>
-          <View style={styles.content}>
-            <TextInput
-              id="description"
-              style={styles.input}
-              value={description}
-              onChangeText={setDescription}
-              numberOfLines={10}
-              multiline={true}
-            />
-            <View style={styles.actions}>
-              <Pressable style={styles.button} onPress={handleUpdateTask}>
-                <IconSave />
-                <Text>Salvar</Text>
-              </Pressable>
-            </View>
-          </View>
+          <Text style={styles.notFound}>Tarefa não encontrada</Text>
           <Footer />
         </View>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+      </SafeAreaView>
+    );
+  }
+
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <FormTask
+          title="Editar Tarefa"
+          value={description}
+          onChange={setDescription}
+          onFormSubmit={handleUpdateTask}
+        />
+        <Footer />
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  keyboardAvoidingView: {
+  safeArea: {
     flex: 1,
+    alignItems: "center",
+    justifyContent: "space-between",
     backgroundColor: "#021123",
   },
   container: {
     flex: 1,
+    width: "100%",
+    justifyContent: "space-between",
     alignItems: "center",
-    gap: 40,
-    backgroundColor: "#021123",
   },
-  title: {
+  notFound: {
     textAlign: "center",
     color: "#FFF",
-    fontSize: 26,
-  },
-  content: {
-    backgroundColor: "#98A0A8",
-    width: "90%",
-    borderRadius: 8,
-    padding: 16,
-    gap: 32,
-  },
-  input: {
-    backgroundColor: "#fff",
-    padding: 16,
-    borderRadius: 8,
-    height: 100,
-  },
-  button: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 4,
-  },
-  actions: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
+    fontSize: 18,
   },
 });

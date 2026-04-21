@@ -42,7 +42,10 @@ export const TaskProvider = ({ children }) => {
 
   const createTask = (description) => {
     setTasks((state) => {
-      return [...state, { description, id: state.length + 1 }];
+      return [
+        ...state,
+        { description, id: `${description}-${state.length + 1}` },
+      ];
     });
   };
 

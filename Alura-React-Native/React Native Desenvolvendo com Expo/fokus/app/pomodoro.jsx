@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
-import { Dimensions, Image, StyleSheet, View } from "react-native";
+import { Dimensions, Image, ScrollView, StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const { width } = Dimensions.get("window");
 
@@ -77,28 +78,30 @@ export default function Pomodoro() {
   };
 
   return (
-    <View style={styles.container}>
-      <Image style={styles.image} source={timerType.image} />
-      <View style={styles.context}>
-        <View style={styles.actions}>
-          {pomodoro.map((item) => (
-            <ActionButton
-              key={item.id}
-              caption={item.display}
-              isActive={item.id === timerType.id}
-              onActionButtonPress={() => toogleTimerType(item)}
-            />
-          ))}
+    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <Image style={styles.image} source={timerType.image} />
+        <View style={styles.content}>
+          <View style={styles.actions}>
+            {pomodoro.map((item) => (
+              <ActionButton
+                key={item.id}
+                caption={item.display}
+                isActive={item.id === timerType.id}
+                onActionButtonPress={() => toogleTimerType(item)}
+              />
+            ))}
+          </View>
+          <Timer time={seconds} />
+          <FocusButton
+            title={isTimerRunning ? "Pausar" : "Começar"}
+            icon={isTimerRunning ? <PauseIcon /> : <PlayIcon />}
+            onPress={toogleTimer}
+          />
         </View>
-        <Timer time={seconds} />
-        <FocusButton
-          title={isTimerRunning ? "Pausar" : "Começar"}
-          icon={isTimerRunning ? <PauseIcon /> : <PlayIcon />}
-          onPress={toogleTimer}
-        />
-      </View>
-      <Footer />
-    </View>
+        <Footer />
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -110,15 +113,20 @@ const styles = StyleSheet.create({
     backgroundColor: "#021123",
     gap: 40,
   },
+  scrollContainer: {
+    alignItems: "center",
+    gap: 40,
+    width: "100%",
+  },
   image: {
     width: width * 0.6,
     height: width * 0.6,
   },
-  context: {
+  content: {
     gap: 32,
     padding: 24,
     backgroundColor: "#14448080",
-    width: "80%",
+    // width: "80%",
     borderWidth: 2,
     borderColor: "#144480",
     borderRadius: 32,

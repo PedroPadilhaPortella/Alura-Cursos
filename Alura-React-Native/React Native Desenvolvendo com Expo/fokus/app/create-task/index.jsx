@@ -1,19 +1,10 @@
 import { router } from "expo-router";
 import { useState } from "react";
-import {
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
+import { StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import { Footer } from "../../components/Footer";
-import { IconSave } from "../../components/Icons";
+import { FormTask } from "../../components/FormTask";
 import { useTaskContext } from "../../components/context/useTaskContext";
 
 export default function CreateTask() {
@@ -30,77 +21,30 @@ export default function CreateTask() {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={styles.keyboardAvoidingView}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-    >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.container}>
-          <Text style={styles.title}>Adicionar Tarefa</Text>
-          <View style={styles.content}>
-            <Text style={styles.label}>Em que você está trabalhando?</Text>
-            <TextInput
-              id="description"
-              style={styles.input}
-              value={description}
-              onChangeText={setDescription}
-              numberOfLines={10}
-              multiline={true}
-            />
-            <View style={styles.actions}>
-              <Pressable style={styles.button} onPress={saveTask}>
-                <IconSave />
-                <Text>Salvar</Text>
-              </Pressable>
-            </View>
-          </View>
-          <Footer />
-        </View>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <FormTask
+          title="Adicionar Tarefa"
+          subtitle="Em que você está trabalhando?"
+          value={description}
+          onChange={setDescription}
+          onFormSubmit={saveTask}
+        />
+        <Footer />
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  keyboardAvoidingView: {
+  safeArea: {
     flex: 1,
     backgroundColor: "#021123",
   },
   container: {
     flex: 1,
+    width: "100%",
+    justifyContent: "space-between",
     alignItems: "center",
-    gap: 40,
-    backgroundColor: "#021123",
-  },
-  title: {
-    textAlign: "center",
-    color: "#FFF",
-    fontSize: 26,
-  },
-  content: {
-    backgroundColor: "#98A0A8",
-    width: "90%",
-    borderRadius: 8,
-    padding: 16,
-    gap: 32,
-  },
-  label: {
-    fontWeight: 600,
-    fontSize: 18,
-  },
-  input: {
-    backgroundColor: "#fff",
-    padding: 16,
-    borderRadius: 8,
-    height: 100,
-  },
-  button: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 4,
-  },
-  actions: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
   },
 });
