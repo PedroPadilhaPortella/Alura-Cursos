@@ -16,6 +16,8 @@ Repositório que contém todos os projetos desenvolvidos nos Cursos da Alura.
 
 [:atom: Alura React](https://github.com/PedroPadilhaPortella/Alura-Cursos/tree/main/Alura-React)
 
+[:atom: Alura Next](https://github.com/PedroPadilhaPortella/Alura-Cursos/tree/main/Alura-Next)
+
 [:atom: Alura React Native](https://github.com/PedroPadilhaPortella/Alura-Cursos/tree/main/Alura-React-Native)
 
 [:iphone: Alura Flutter](https://github.com/PedroPadilhaPortella/Alura-Cursos) 
