@@ -1,0 +1,12 @@
+<section [style.border-top-color]="highlightColor()">
+  <button class="favorite" (click)="toggleFavorite()">
+    <span>{{book().favorite ? '\u2764' :'\u2661'}}</span>
+  </button>
+  <div class="image">
+    <img [src]='book().image' [alt]="book().title">
+  </div>
+  <div class="card">
+    <h2 class="title">{{ book().title }}</h2>
+    <h3 class="author">{{ book().author }}</h3>
+  </div>
+</section>

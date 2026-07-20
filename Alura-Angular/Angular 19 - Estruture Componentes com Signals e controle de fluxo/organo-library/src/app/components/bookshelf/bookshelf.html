@@ -1,0 +1,8 @@
+<section class="bookshelf">
+    <h2 class="section-title">Estante de Livros</h2>
+    <span class="section-highlights highlights-large"></span>
+    
+    @for (genre of genres; track genre.id) {
+      <app-book-genre [genre]="genre" [books]="booksByGenre(genre.id)"></app-book-genre>
+    }
+</section>

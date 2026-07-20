@@ -1,0 +1,12 @@
+section.bookshelf {
+  display: flex;
+  flex-direction: column;
+  padding: 48px 160px;
+  background-color: #f5f5f5;
+}
+
+.highlights-large {
+  width: 64px;
+  border-bottom: 4px solid var(--color-primaria);
+  margin-bottom: 12px;
+}

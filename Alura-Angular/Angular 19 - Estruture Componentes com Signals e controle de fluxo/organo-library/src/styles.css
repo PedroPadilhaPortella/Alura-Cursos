@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --font-montserrat: 'Montserrat', sans-serif;
+  --font-prata: 'Prata', serif;
+  --color-primaria: #6278F7;
+  --color-secundaria: #2E2E2E;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+}
+
+*, body, html {
+  margin: 0;
+  padding: 0;
+}
+
+.section-title {
+  font-family: var(--font-prata);
+  font-size: 40px;
+  font-weight: var(--font-weight-normal);
+  line-height: 72px;
+  text-align: center;
+  color: var(--color-primaria);
+}
+
+.section-highlights {
+  display: block;
+  margin: 0 auto;
+}

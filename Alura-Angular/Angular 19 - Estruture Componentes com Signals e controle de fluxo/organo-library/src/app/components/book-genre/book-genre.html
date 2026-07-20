@@ -1,0 +1,15 @@
+<section [style.background-color]="genre().backgroundColor">
+  <h3 class="genre-title">{{ genre().value }}</h3>
+  <span class="genre-highlight" [style.border-bottom-color]="genre().highlightColor"></span>
+
+  @if (books().length === 0) {
+    <p class="no-books">Nenhum livro desse gênero</p>
+  } 
+  @else {
+    <div class="books-row">
+      @for (book of books(); track book.id) {
+        <app-book [book]="book" [highlightColor]="genre().highlightColor"></app-book>
+      }
+    </div>
+  }
+</section>
