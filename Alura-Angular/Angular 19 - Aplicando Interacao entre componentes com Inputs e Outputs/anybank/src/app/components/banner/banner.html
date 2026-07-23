@@ -1,0 +1,12 @@
+<header class="banner">
+  <section class="welcome">
+    <span class="date">{{ currentDate | date:'EEEE, dd/MM/yyyy' | titlecase }}</span>
+    <app-username />
+  </section>
+  <section class="account">
+    <h2 class="title">Saldo</h2>
+    <div class="line"></div>
+    <span class="accountType">Conta corrente</span>
+    <span class="balance">{{ balance() | currency:"BRL" }}</span>
+    </section>
+</header>

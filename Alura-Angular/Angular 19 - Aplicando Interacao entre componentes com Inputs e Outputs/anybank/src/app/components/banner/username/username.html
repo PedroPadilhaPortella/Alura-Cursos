@@ -1,0 +1,15 @@
+@if (!isEditing()) {
+  <div class="username">
+    <h1 class="title">Olá, {{ userName() }}! :)</h1>
+    <button class="icon-button" (click)="startEdit()" aria-label="Editar nome">
+      <lucide-icon [img]="PencilIcon" [size]="24"></lucide-icon>
+    </button>
+  </div>
+} @else {
+  <div class="username">
+    <input class="nome-input" type="text" [(ngModel)]="editValue" (keyup.enter)="saveEdit()" />
+    <button class="icon-button" (click)="saveEdit()" aria-label="Salvar nome">
+      <lucide-icon [img]="CheckIcon" [size]="24"></lucide-icon>
+    </button>
+  </div>
+}

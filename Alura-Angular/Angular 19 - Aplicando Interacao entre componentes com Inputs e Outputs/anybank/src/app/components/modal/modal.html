@@ -1,0 +1,7 @@
+<div class="modal-overlay" (click)="onClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h3 class="modal-title">{{ title() }}</h3>
+    <p class="modal-message">{{ message() }}</p>
+    <button class="modal-close" (click)="onClose()">Entendi</button>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="app">
+  <div class="banner-form-wrapper">
+    <app-banner [balance]="balance()" />
+    <app-form-transaction (createdTransaction)="processTransaction($event)" />
+  </div>
+
+  <app-transaction-statements class="statements" [transactions]="transactions()" />
+</div>
+
+@if (showInsufficientBalanceModal()) {
+  <app-modal
+    title="Saldo insuficiente"
+    message="Você não tem saldo suficiente para realizar essa saída."
+    (close)="closeModal()"
+  ></app-modal>
+}
