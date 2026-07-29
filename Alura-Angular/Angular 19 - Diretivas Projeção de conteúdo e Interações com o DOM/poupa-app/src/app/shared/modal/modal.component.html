@@ -1,0 +1,19 @@
+<dialog #modal class="dialog" (close)="onDialogClose()">
+  <button class="close-modal" (click)="onDialogClose()">
+    <img src="icones/fechar.svg" alt="">
+  </button>
+
+  <div class="content">
+    <div class="header">
+      <ng-content select="[modal-cabecalho]">
+        Título padrão
+      </ng-content>
+    </div>
+
+    <div>
+      <ng-content>
+        Conteúdo padrão
+      </ng-content>
+    </div>
+  </div>
+</dialog>

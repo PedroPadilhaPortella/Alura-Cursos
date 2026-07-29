@@ -1,0 +1,15 @@
+<section>
+  <div class="title-container">
+    <ng-content select="[card-title]">
+      <!-- Fallback -->
+      <span class="empty-title">Sem título</span>
+    </ng-content>
+  </div>
+
+  <div class="body-container">
+    <ng-content>
+      <!-- Fallback -->
+      <p class="empty-state">Não há nada aqui ainda</p>
+    </ng-content>
+  </div>
+</section>

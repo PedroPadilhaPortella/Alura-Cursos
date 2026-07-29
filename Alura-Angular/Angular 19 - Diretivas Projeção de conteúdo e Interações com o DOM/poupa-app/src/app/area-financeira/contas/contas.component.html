@@ -1,0 +1,27 @@
+<app-card>
+  <h2 card-title class="texto-lg">Minhas contas</h2>
+    <div class="contas-e-botao">
+      <ul>
+        @for (conta of contas(); track conta.nome) {
+          <li class="item-entre-divisorias">
+            <app-conta [conta]="conta" />
+          </li>
+        } @empty {
+          <li aria-hidden="true">
+            Ainda não há contas criadas.
+          </li>
+        }
+      </ul>
+  
+      <app-botao (click)="openModal()" class="botao-adicionar-conta">
+        <img src="icones/carteira.svg" alt="" class="icone-carteira">
+        Adicionar conta
+      </app-botao>
+    </div>
+</app-card>
+
+<app-modal-nova-conta
+  [isModalOpen]="isModalOpen()"
+  (closeModal)="closeModal()"
+  (addConta)="onAddConta($event)"
+/>

@@ -1,0 +1,13 @@
+.transacoes-e-botao {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.botao-adicionar-transacao {
+  margin: 0 auto;
+}
+
+.icone-moeda {
+  width: 1rem;
+}

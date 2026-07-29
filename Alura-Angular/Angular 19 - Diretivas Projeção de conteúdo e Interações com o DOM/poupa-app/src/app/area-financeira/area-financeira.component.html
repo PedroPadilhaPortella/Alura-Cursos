@@ -1,0 +1,5 @@
+<div class="area-financeira">
+  <app-saldo class="saldo" [saldo]="saldo()" />
+  <app-transacoes class="transacoes" [transacoes]="transacoes()" [contas]="contas()" (addTransaction)="onAddTransaction($event)" />
+  <app-contas class="contas" [contas]="contas()" (addConta)="onAddConta($event)" />
+</div>
