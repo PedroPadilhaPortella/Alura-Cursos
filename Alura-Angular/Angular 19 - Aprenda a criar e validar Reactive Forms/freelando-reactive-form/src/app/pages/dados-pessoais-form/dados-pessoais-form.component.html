@@ -1,0 +1,147 @@
+<div class="cadastro-form">
+  <div class="cadastro-form__container">
+    <div class="cadastro-form__card">
+      <h2 class="cadastro-form__title">Crie seu cadastro</h2>
+
+      <p class="cadastro-form__description">
+        Crie seu perfil gratuitamente para começar a trabalhar com os melhores freelancers.
+        Em seguida, você poderá dar mais detalhes sobre suas demandas e sobre sua forma de trabalho.
+      </p>
+
+      <form [formGroup]="dadosPessoaisForm" (ngSubmit)="onNextStep()">
+
+        <div class="cadastro-form__field">
+          <label for="nomeCompleto" class="cadastro-form__label">Nome Completo</label>
+          <input id="nomeCompleto" type="text" class="cadastro-form__input" formControlName="nomeCompleto" />
+          <div class="cadastro-form__error"
+            *ngIf="dadosPessoaisForm.get('nomeCompleto')?.touched && dadosPessoaisForm.get('nomeCompleto')?.invalid">
+              Nome completo é obrigatório.
+          </div>
+        </div>
+
+        <div class="cadastro-form__field">
+          <label for="cpf" class="cadastro-form__label">CPF</label>
+          <input 
+            id="cpf" type="text" class="cadastro-form__input" 
+            formControlName="cpf" placeholder="000.000.000-00" minlength="11" maxlength="14"
+          />
+          <div class="cadastro-form__error"
+            *ngIf="dadosPessoaisForm.get('cpf')?.touched && dadosPessoaisForm.get('cpf')?.invalid">
+              <span *ngIf="dadosPessoaisForm.get('cpf')?.errors?.['required']">CPF é obrigatório.</span>
+              <span *ngIf="dadosPessoaisForm.get('cpf')?.errors?.['cpfInvalido']">CPF inválido.</span>
+          </div>
+        </div>
+
+        <div class="cadastro-form__row">
+          <div class="cadastro-form__field cadastro-form__field--half">
+            <label for="cep" class="cadastro-form__label">CEP</label>
+            <input 
+              id="cep" type="text" class="cadastro-form__input" 
+              formControlName="cep" placeholder="00000-000" maxlength="9"
+            />
+            <div class="cadastro-form__error"
+              *ngIf="dadosPessoaisForm.get('cep')?.touched && dadosPessoaisForm.get('cep')?.invalid">
+                <span *ngIf="dadosPessoaisForm.get('cep')?.errors?.['required']">CEP é obrigatório.</span>
+                <span *ngIf="dadosPessoaisForm.get('cep')?.errors?.['pattern']">Formato de CEP inválido.</span>
+                <span *ngIf="dadosPessoaisForm.get('cep')?.errors?.['cepInexistente']">CEP não encontrado.</span>
+                <span *ngIf="dadosPessoaisForm.get('cep')?.errors?.['cepInvalido']">Erro ao validar o CEP.</span>
+            </div>
+          </div>
+
+          <div class="cadastro-form__field cadastro-form__field--half">
+            <label for="logradouro" class="cadastro-form__label">Logradouro</label>
+            <input 
+              id="logradouro" type="text" class="cadastro-form__input" 
+              formControlName="logradouro" 
+              [placeholder]="(isLoadingCep$ | async) ? 'Buscando...' : 'Preenchido automaticamente'"
+              readonly
+            />
+          </div>
+        </div>
+
+        <div class="cadastro-form__row">
+          <div class="cadastro-form__field cadastro-form__field--half">
+            <label for="estado" class="cadastro-form__label">Estado</label>
+            <select id="estado" class="cadastro-form__input" formControlName="estado">
+              <option value="" disabled selected>Selecione o estado</option>
+              <ng-container *ngIf="estados$ | async as estados">
+                <option *ngFor="let estado of estados" [value]="estado.sigla">{{ estado.nome }}</option>
+              </ng-container>
+            </select>
+            <div class="cadastro-form__error"
+              *ngIf="dadosPessoaisForm.get('estado')?.touched && dadosPessoaisForm.get('estado')?.invalid">
+                Estado é obrigatório.
+            </div>
+          </div>
+
+          <div class="cadastro-form__field cadastro-form__field--half">
+            <label for="cidade" class="cadastro-form__label">Cidade</label>
+            <select 
+              id="cidade" class="cadastro-form__input" formControlName="cidade" 
+              [disabled]="(isLoadingCidades$ | async) || !dadosPessoaisForm.get('estado')?.value"
+            >
+              <option value="" disabled selected>{{ (isLoadingCidades$ | async) ? 'Carregando...' : 'Selecione' }}</option>
+              <ng-container *ngIf="cidades$ | async as cidades">
+                <option *ngFor="let cidade of cidades" [value]="cidade.nome">{{ cidade.nome }}</option>
+              </ng-container>
+            </select>
+            <div class="cadastro-form__error"
+              *ngIf="dadosPessoaisForm.get('cidade')?.touched && dadosPessoaisForm.get('cidade')?.invalid">
+                Cidade é obrigatório.
+            </div>
+          </div>
+        </div>
+
+        <div class="cadastro-form__field">
+          <label for="email" class="cadastro-form__label">E-mail</label>
+          <input id="email" type="email" class="cadastro-form__input" formControlName="email" />
+          <div class="cadastro-form__error"
+            *ngIf="dadosPessoaisForm.get('email')?.touched && dadosPessoaisForm.get('email')?.invalid">
+              <span *ngIf="dadosPessoaisForm.get('email')?.errors?.['required']">E-mail é obrigatório.</span>
+              <span *ngIf="dadosPessoaisForm.get('email')?.errors?.['email']">E-mail inválido.</span>
+          </div>
+        </div>
+
+        <div class="cadastro-form__row">
+          <div class="cadastro-form__field cadastro-form__field--half">
+            <label for="senha" class="cadastro-form__label">Senha</label>
+            <input id="senha" type="password" class="cadastro-form__input" formControlName="senha" />
+            <div class="cadastro-form__error"
+              *ngIf="dadosPessoaisForm.get('senha')?.touched && dadosPessoaisForm.get('senha')?.invalid">
+              <span *ngIf="dadosPessoaisForm.get('senha')?.errors?.['required']">Senha é obrigatória.</span>
+              <span *ngIf="dadosPessoaisForm.get('senha')?.errors?.['minlength']">A senha deve ter pelo menos 6 caracteres.</span>
+            </div>
+          </div>
+
+          <div class="cadastro-form__field cadastro-form__field--half">
+            <label for="confirmarSenha" class="cadastro-form__label">Confirme a Senha</label>
+            <input id="confirmarSenha" type="password" class="cadastro-form__input" formControlName="confirmarSenha" />
+            <div class="cadastro-form__error"
+              *ngIf="dadosPessoaisForm.get('confirmarSenha')?.touched && dadosPessoaisForm.errors?.['passwordsNotEqual']">
+                As senhas não coincidem.
+            </div>
+          </div>
+        </div>
+
+        <div class="cadastro-form__actions">
+          <app-button
+            text="Anterior"
+            type="outline"
+            icon="fas fa-arrow-left"
+            iconPosition="left"
+            (clicked)="onPreviousStep()">
+          </app-button>
+
+          <app-button
+            text="Próximo"
+            type="primary"
+            icon="fas fa-arrow-right"
+            iconPosition="right"
+            [disabled]="dadosPessoaisForm.invalid"
+            (clicked)="onNextStep()">
+          </app-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

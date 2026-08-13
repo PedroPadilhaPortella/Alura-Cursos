@@ -1,0 +1,60 @@
+<div class="cadastro-form">
+  <div class="cadastro-form__container">
+    <div class="cadastro-form__card">
+      <h2 class="cadastro-form__title">Crie seu cadastro</h2>
+
+      <form [formGroup]="cadastroForm" (ngSubmit)="onNextStep()">
+        <div class="cadastro-form__section">
+          <h3 class="cadastro-form__section-title">Qual a área de atuação?</h3>
+          <div>
+            <app-radio-option
+              *ngFor="let area of areasAtuacao"
+              [id]="area.id"
+              name="areaAtuacao"
+              [value]="area.value"
+              [label]="area.label"
+              [checked]="cadastroForm.get('areaAtuacao')?.value === area.value"
+              (selectionChange)="onAreaChange($event)"
+            />
+            <div class="cadastro-form__error"
+              *ngIf="cadastroForm.get('areaAtuacao')?.touched && cadastroForm.get('areaAtuacao')?.invalid">
+                Por favor, selecione uma área de atuação.
+            </div>
+          </div>
+        </div>
+
+        <div class="cadastro-form__section">
+          <h3 class="cadastro-form__section-title">Qual o nível de experiência?</h3>
+          <div>
+            <app-experience-level
+             [levels]="niveisExperiencia"
+             (levelChange)="onLevelChange($event)"
+            />
+            <div class="cadastro-form__error"
+              *ngIf="cadastroForm.get('nivelExperiencia')?.touched && cadastroForm.get('nivelExperiencia')?.invalid">
+                Por favor, selecione um nível de experiência.
+            </div>
+          </div>
+        </div>
+
+        <div class="cadastro-form__actions">
+          <app-button
+            text="Anterior"
+            type="outline"
+            icon="fa fa-arrow-left"
+            iconPosition="left"
+            (click)="onPreviousStep()"
+          />
+          <app-button
+            text="Próximo"
+            type="primary"
+            icon="fa fa-arrow-right"
+            iconPosition="right"
+            [disabled]="cadastroForm.invalid"
+            (click)="onNextStep()"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
