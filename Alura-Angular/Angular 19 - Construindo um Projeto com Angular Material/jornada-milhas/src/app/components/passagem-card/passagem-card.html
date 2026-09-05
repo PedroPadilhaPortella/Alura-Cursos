@@ -1,0 +1,11 @@
+<div class="passagem-card">
+  <div class="passagem-border"></div>
+  <div class="passagem-info">
+    <span class="trajeto">{{ passagem().origem.nome }} → {{ passagem().destino.nome }}</span>
+    <span class="detalhes">{{ passagem().data }} às {{ passagem().horario }}</span>
+  </div>
+  <div class="passagem-preco">
+    <span class="milhas">{{ passagem().valorMilhas | number }} milhas</span>
+    <span class="dolares">ou US$ {{ passagem().valorDolares }}</span>
+  </div>
+</div>

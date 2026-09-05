@@ -1,0 +1,61 @@
+<section class="form-wrapper">
+  <h2 class="titulo">Passagens</h2>
+
+  <form [formGroup]="form" (ngSubmit)="buscar()">
+    <mat-button-toggle-group name="trajeto" aria-label="Trajeto">
+      <mat-button-toggle value="ida-e-volta">Ida e volta</mat-button-toggle>
+      <mat-button-toggle value="somente-ida">Somente ida</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <div class="campos-lugares">
+      <mat-form-field class="campo-origem" appearance="outline">
+        <mat-icon matPrefix>flight_takeoff</mat-icon>
+        <mat-label>Origem</mat-label>
+        <input matInput formControlName="origem" [matAutocomplete]="autoOrigem" />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <mat-autocomplete #autoOrigem="matAutocomplete">
+        @for (cidade of origemFiltrada(); track cidade.id) {
+          <mat-option [value]="cidade.nome">{{ cidade.nome }} ({{ cidade.aeroporto }})</mat-option>
+        }
+      </mat-autocomplete>
+
+      <button
+        mat-icon-button
+        matTooltip="Trocar origem e destino"
+        class="botao-trocar"
+        type="button"
+        aria-label="Trocar origem e destino"
+        (click)="trocarOrigemDestino()"
+      >
+        <mat-icon>sync_alt</mat-icon>
+      </button>
+
+      <mat-form-field class="campo-destino" appearance="outline">
+        <mat-icon matPrefix>flight_land</mat-icon>
+        <mat-label>Destino</mat-label>
+        <input matInput formControlName="destino" [matAutocomplete]="autoDestino" />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <mat-autocomplete #autoDestino="matAutocomplete">
+        @for (cidade of destinoFiltrada(); track cidade.id) {
+          <mat-option [value]="cidade.nome">{{ cidade.nome }} ({{ cidade.aeroporto }})</mat-option>
+        }
+      </mat-autocomplete>
+
+      <button mat-flat-button class="botao-buscar">Buscar</button>
+    </div>
+  </form>
+
+  @if (resultados().length > 0) {
+    <div class="lista-resultados">
+      @for (passagem of resultados(); track passagem.id) {
+        <app-passagem-card [passagem]="passagem" />
+      }
+    </div>
+  } @else if (buscou()) {
+    <p class="mensagem-vazia">Nenhum voo encontrado para esse trajeto. Tente outras cidades.</p>
+  }
+</section>
